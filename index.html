@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Web Taller</title>
+
+    <meta name="author" content="Pepe">
+    <meta name="description" content="Primer proyecto de APW.">
+    <meta name="keywords" content="Taller, CPU, Tecnico, Arreglos">
+
+    <!-- Fuente Orbitron para el botón de tema -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Hoja de estilos (ruta relativa, sin barra inicial) -->
+    <link rel="stylesheet" href="css/index.css">
+
+    <!-- Script UNA sola vez, con ruta relativa y defer -->
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+
+    <script>
+      try {
+        if (localStorage.getItem('tema') === 'dark') document.body.classList.add('dark');
+      } catch (e) {}
+    </script>
+
+    <header id="inicio">
+
+    <header id="inicio">
+        <h1>Nombre de mi Web</h1>
+
+        <!-- Botón para cambiar el tema -->
+        <button id="btn-theme" type="button">Cambiar tema</button>
+
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="servicios">
+            <h2>Nuestros Servicios</h2>
+
+            <!-- Contenedor flex de las tarjetas -->
+            <div class="tarjetas">
+                <article>
+                    <h3>Mantenimiento</h3>
+                    <p>Cuidado periódico de céspedes, setos y plantas para mantener tu jardín siempre en óptimas condiciones durante todo el año.</p>
+                    <img src="assets/manteniment.jpg" alt="Mantenimiento de jardines">
+                </article>
+
+                <article>
+                    <h3>Redes</h3>
+                    <p>Limpieza, control de químicos y revisión de equipos para garantizar que tu piscina esté siempre lista para el baño.</p>
+                    <img src="assets/xarxes.jpg" alt="Mantenimiento de piscinas">
+                </article>
+
+                <article>
+                    <h3>Corrección de Virus</h3>
+                    <p>Revisión y reparación de cableados, cuadros eléctricos y dispositivos para asegurar un funcionamiento seguro y eficiente.</p>
+                    <img src="assets/malware.jpg" alt="Mantenimiento de instalaciones eléctricas">
+                </article>
+            </div>
+        </section>
+
+        <form id="contacto" action="#" method="post" novalidate>
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required placeholder="Juan Fernandez García">
+
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" required placeholder="juan@gmail.com">
+
+            <label for="servicio">Servicio</label>
+            <select id="servicio" name="servicio">
+                <option value="mantenimiento">Mantenimiento</option>
+                <option value="redes">Redes</option>
+                <option value="virus">Corrección de virus</option>
+            </select>
+
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="5"></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </main>
+
+</body>
+</html>

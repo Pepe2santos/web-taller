@@ -1,0 +1,388 @@
+/* ===== FRUTIGER AERO: cielo, vidrio brillante, burbujas y botones de gel ===== */
+
+/* ---------- VARIABLES: tema claro (cielo aqua y hierba) ---------- */
+:root {
+  --cielo:
+    radial-gradient(ellipse 80% 40% at 50% 105%, rgba(140, 225, 90, 0.8), transparent 70%),
+    linear-gradient(180deg, #46b3ee 0%, #9adcff 40%, #e9f9ff 100%);
+  --header: linear-gradient(180deg, #a6ecff 0%, #38b6ee 48%, #1590d8 52%, #52c9f4 100%);
+  --vidrio: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(220, 245, 255, 0.62));
+  --brillo: linear-gradient(180deg, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0));
+  --borde: rgba(255, 255, 255, 0.95);
+  --sombra: 0 10px 28px rgba(0, 100, 170, 0.3);
+  --texto: #0c3b5c;
+  --suave: #3a6584;
+  --titulo: #0a5a96;
+  --acento: #1590d8;
+  --campo: rgba(255, 255, 255, 0.92);
+  --campo-borde: #7cc7ec;
+  --gel-azul: linear-gradient(180deg, #b4efff 0%, #2fb5ee 48%, #1388d4 52%, #55cdf7 100%);
+  --gel-verde: linear-gradient(180deg, #c8f58a 0%, #5fcf2e 48%, #2fa81a 52%, #7fe04a 100%);
+  --borde-gel: rgba(255, 255, 255, 0.85);
+  --luz-gel: 0 4px 10px rgba(0, 80, 140, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --burbuja: rgba(255, 255, 255, 0.55);
+}
+
+/* ---------- Tema oscuro: Frutiger Aero en negro (cristal negro y brillo cian) ---------- */
+body.dark {
+  --cielo:
+    radial-gradient(ellipse 80% 40% at 50% 105%, rgba(0, 229, 255, 0.3), transparent 70%),
+    linear-gradient(180deg, #000000 0%, #04141b 55%, #06303a 100%);
+  --header: linear-gradient(180deg, #44545e 0%, #12191e 48%, #000000 52%, #1c2f38 100%);
+  --vidrio: linear-gradient(180deg, rgba(44, 60, 70, 0.92), rgba(5, 9, 12, 0.85));
+  --brillo: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0));
+  --borde: rgba(110, 230, 255, 0.45);
+  --sombra: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 18px rgba(0, 229, 255, 0.18);
+  --texto: #e3f8ff;
+  --suave: #9fc6d2;
+  --titulo: #6ff0ff;
+  --acento: #27e0ff;
+  --campo: rgba(0, 0, 0, 0.55);
+  --campo-borde: rgba(110, 230, 255, 0.5);
+  --gel-azul: linear-gradient(180deg, #5b6b73 0%, #1d272c 48%, #000000 52%, #1f3a44 100%);
+  --gel-verde: linear-gradient(180deg, #5b6b73 0%, #1d272c 48%, #000000 52%, #1f3a44 100%);
+  --borde-gel: rgba(110, 230, 255, 0.7);
+  --luz-gel: 0 0 14px rgba(0, 229, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  --burbuja: rgba(110, 230, 255, 0.2);
+}
+
+/* ---------- BASE ---------- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', 'Frutiger', 'Myriad Pro', 'Trebuchet MS', sans-serif;
+  background: var(--cielo);
+  background-attachment: fixed;
+  color: var(--texto);
+  transition: color 0.3s;
+}
+
+/* Burbujas de cristal flotando al fondo */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle 110px at 10% 25%, var(--burbuja), transparent 70%),
+    radial-gradient(circle 70px at 88% 18%, var(--burbuja), transparent 70%),
+    radial-gradient(circle 150px at 78% 62%, var(--burbuja), transparent 70%),
+    radial-gradient(circle 55px at 22% 78%, var(--burbuja), transparent 70%),
+    radial-gradient(circle 90px at 50% 40%, var(--burbuja), transparent 70%);
+  animation: flotar 14s ease-in-out infinite alternate;
+}
+
+@keyframes flotar { to { transform: translateY(-24px); } }
+
+/* ---------- HEADER Y MENÚ ---------- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px 24px;
+  background: var(--header);
+  border-bottom: 1px solid var(--borde-gel);
+  box-shadow: 0 4px 18px rgba(0, 90, 160, 0.4);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 60, 110, 0.6);
+}
+
+body.dark header h1 { color: #bff7ff; text-shadow: 0 0 12px rgba(0, 229, 255, 0.7); }
+
+header nav { width: 100%; }
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  display: block;
+  padding: 8px 20px;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  text-shadow: 0 1px 2px rgba(0, 60, 110, 0.6);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 999px;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.8);
+}
+
+body.dark nav a { color: #bff7ff; background: rgba(0, 0, 0, 0.35); border-color: rgba(110, 230, 255, 0.5); }
+body.dark nav a:hover { background: rgba(0, 229, 255, 0.2); box-shadow: 0 0 14px rgba(0, 229, 255, 0.6); }
+
+/* ---------- BOTONES DE GEL ---------- */
+#btn-theme,
+button[type="submit"] {
+  padding: 10px 26px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 50, 20, 0.6);
+  background: var(--gel-verde);
+  border: 1px solid var(--borde-gel);
+  border-radius: 999px;
+  box-shadow: var(--luz-gel);
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.15s;
+}
+
+button[type="submit"] { background: var(--gel-azul); text-shadow: 0 1px 2px rgba(0, 50, 110, 0.6); }
+
+body.dark #btn-theme,
+body.dark button[type="submit"] { color: #bff7ff; text-shadow: 0 0 8px rgba(0, 229, 255, 0.8); }
+
+#btn-theme:hover,
+button[type="submit"]:hover { filter: brightness(1.12); }
+
+#btn-theme:active,
+button[type="submit"]:active { transform: translateY(1px); }
+
+:focus-visible { outline: 3px solid var(--acento); outline-offset: 3px; }
+
+/* ---------- BANDA DE TEXTO QUE SE DESPLAZA ---------- */
+#ticker {
+  container-type: inline-size;
+  overflow: hidden;
+  padding: 9px 0;
+  background: var(--gel-azul);
+  border-bottom: 1px solid var(--borde-gel);
+  box-shadow: 0 3px 10px rgba(0, 90, 160, 0.3);
+}
+
+#ticker span {
+  display: inline-block;
+  white-space: nowrap;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 60, 110, 0.6);
+  animation: desplazar 26s linear infinite;
+}
+
+body.dark #ticker span { color: #bff7ff; text-shadow: 0 0 8px rgba(0, 229, 255, 0.8); }
+
+@keyframes desplazar {
+  from { transform: translateX(100cqw); }
+  to   { transform: translateX(-100%); }
+}
+
+/* ---------- VIDRIO BRILLANTE: tarjetas, formulario y contador ---------- */
+.tarjetas article,
+form,
+#contador {
+  position: relative;
+  overflow: hidden;
+  background: var(--vidrio);
+  border: 1px solid var(--borde);
+  border-radius: 20px;
+  box-shadow: var(--sombra), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Reflejo de cristal en la mitad superior */
+.tarjetas article::before,
+form::before,
+#contador::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 50% 0;
+  background: var(--brillo);
+  pointer-events: none;
+}
+
+.tarjetas article > *,
+form > *,
+#contador > * { position: relative; }
+
+/* ---------- SERVICIOS ---------- */
+#servicios { padding: 40px 20px; }
+
+h2 {
+  text-align: center;
+  font-weight: 600;
+  color: var(--titulo);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9), 0 0 14px rgba(255, 255, 255, 0.7);
+}
+
+body.dark h2 { text-shadow: 0 0 14px rgba(0, 229, 255, 0.6); }
+
+.tarjetas {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.tarjetas article {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 280px;
+  min-width: 250px;
+  max-width: 320px;
+  padding: 20px;
+}
+
+.tarjetas h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--titulo);
+}
+
+.tarjetas p {
+  flex-grow: 1;
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+  color: var(--suave);
+  text-align: center;
+}
+
+.tarjetas img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 12px rgba(0, 70, 120, 0.3);
+}
+
+body.dark .tarjetas img { border-color: rgba(110, 230, 255, 0.5); }
+
+/* ---------- FORMULARIO ---------- */
+form {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 24px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: var(--titulo);
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--texto);
+  background: var(--campo);
+  border: 1px solid var(--campo-borde);
+  border-radius: 12px;
+  box-shadow: inset 0 2px 5px rgba(0, 70, 120, 0.15);
+}
+
+select option { background: #ffffff; color: #0c3b5c; }
+body.dark select option { background: #0b1217; color: #e3f8ff; }
+
+textarea { resize: vertical; }
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--acento);
+  box-shadow: 0 0 0 3px rgba(21, 144, 216, 0.3);
+}
+
+body.dark input:focus,
+body.dark select:focus,
+body.dark textarea:focus { box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.3); }
+
+/* Errores de validación */
+input.error, select.error, textarea.error {
+  border-color: #e53935;
+  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.25);
+}
+
+.mensaje-error {
+  display: block;
+  margin: -10px 0 14px;
+  color: #d32f2f;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+body.dark .mensaje-error { color: #ff6b6b; }
+body.dark input.error, body.dark select.error, body.dark textarea.error { border-color: #ff6b6b; }
+
+/* ---------- CONTADOR DE VISITAS ---------- */
+#contador {
+  max-width: 440px;
+  margin: 0 auto 40px;
+  padding: 18px 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.digitos { display: inline-flex; gap: 4px; margin-left: 10px; vertical-align: middle; }
+
+.digito {
+  display: inline-block;
+  width: 26px;
+  padding: 4px 0;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 1.2rem;
+  color: #7df3ff;
+  text-shadow: 0 0 8px #27e0ff;
+  background: linear-gradient(180deg, #3b4b55 0%, #0b1217 50%, #000000 52%, #10242c 100%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+}
+
+#contador small {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--suave);
+}
+
+/* ---------- RASTRO DE CHISPAS DEL CURSOR ---------- */
+.chispa {
+  position: fixed;
+  z-index: 50;
+  font-size: 18px;
+  pointer-events: none;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.9);
+  transform: translate(-50%, -50%);
+  animation: chispa 0.9s ease-out forwards;
+}
+
+@keyframes chispa {
+  to { transform: translate(calc(-50% + var(--dx)), calc(-50% - 40px)) scale(0.3); opacity: 0; }
+}
+
+/* ---------- MENOS MOVIMIENTO ---------- */
+@media (prefers-reduced-motion: reduce) {
+  body::before { animation: none; }
+  #ticker { overflow-x: auto; }
+  #ticker span { animation: none; }
+}
