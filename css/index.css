@@ -78,10 +78,10 @@ body::before {
 
 /* ---------- HEADER Y MENÚ ---------- */
 header {
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
   gap: 16px;
   padding: 16px 24px;
   background: var(--header);
@@ -89,13 +89,12 @@ header {
   box-shadow: 0 4px 18px rgba(0, 90, 160, 0.4);
 }
 
-header { position: relative; }
-
+/* Título: ocupa todo el ancho y se centra de verdad */
 header h1 {
-  flex: 1 1 100%;          /* ocupa toda la fila */
+  width: 100%;
   margin: 0;
-  padding: 0 150px;        /* espacio a los lados para que el botón no lo pise */
-  text-align: center;      /* centrado real */
+  padding: 0 170px;   /* hueco a los lados para que el botón no lo pise */
+  text-align: center;
   font-size: 1.6rem;
   font-weight: 600;
   color: #ffffff;
@@ -167,19 +166,22 @@ button[type="submit"]:hover { filter: brightness(1.12); }
 button[type="submit"]:active { transform: translateY(1px); }
 
 :focus-visible { outline: 3px solid var(--acento); outline-offset: 3px; }
+
+/* Botón de tema en la esquina superior derecha del header */
 #btn-theme {
   position: absolute;
-  top: 16px;
+  top: 12px;
   right: 24px;
 }
 
 /* En pantallas pequeñas el botón pasa a su propia fila, centrado */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   header h1 { padding: 0; }
   #btn-theme {
     position: static;
-    margin: 0 auto;
+    order: 2;
   }
+  header nav { order: 3; }
 }
 
 /* ---------- BANDA DE TEXTO QUE SE DESPLAZA ---------- */
