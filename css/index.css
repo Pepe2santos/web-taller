@@ -89,10 +89,13 @@ header {
   box-shadow: 0 4px 18px rgba(0, 90, 160, 0.4);
 }
 
+header { position: relative; }
+
 header h1 {
+  flex: 1 1 100%;          /* ocupa toda la fila */
   margin: 0;
-  margin-right: auto;
-  margin-left: auto;
+  padding: 0 150px;        /* espacio a los lados para que el botón no lo pise */
+  text-align: center;      /* centrado real */
   font-size: 1.6rem;
   font-weight: 600;
   color: #ffffff;
@@ -164,6 +167,20 @@ button[type="submit"]:hover { filter: brightness(1.12); }
 button[type="submit"]:active { transform: translateY(1px); }
 
 :focus-visible { outline: 3px solid var(--acento); outline-offset: 3px; }
+#btn-theme {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+}
+
+/* En pantallas pequeñas el botón pasa a su propia fila, centrado */
+@media (max-width: 600px) {
+  header h1 { padding: 0; }
+  #btn-theme {
+    position: static;
+    margin: 0 auto;
+  }
+}
 
 /* ---------- BANDA DE TEXTO QUE SE DESPLAZA ---------- */
 #ticker {
